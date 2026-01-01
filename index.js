@@ -8,11 +8,15 @@ canvas.height = window.innerHeight;
 let fireworks = [];
 let particles = [];
 
+const muteBtn = document.getElementById('muteBtn');
+let isMuted = false;
+
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
 
 function playSound() {
+    if (isMuted) return;
     let audio = new Audio('/assets/firework.wav');
     audio.volume = 0.5; 
     
@@ -176,5 +180,15 @@ function launchMessage() {
     
     input.value = '';
 }
+
+muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    
+    if (isMuted) {
+        muteBtn.innerHTML = "🔇";
+    } else {
+        muteBtn.innerHTML = "🔊";
+    }
+});
 
 loop();
