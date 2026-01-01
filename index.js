@@ -17,7 +17,7 @@ function random(min, max) {
 
 function playSound() {
     if (isMuted) return;
-    let audio = new Audio('/assets/firework.wav');
+    let audio = new Audio('./assets/firework.wav');
     audio.volume = 0.5; 
     
     audio.play().catch(error => {
