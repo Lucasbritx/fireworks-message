@@ -12,6 +12,15 @@ function random(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function playSound() {
+    let audio = new Audio('/assets/firework.wav');
+    audio.volume = 0.5; 
+    
+    audio.play().catch(error => {
+        console.log(error);
+    });
+}
+
 class Firework {
     constructor(sx, sy, tx, ty) {
         this.x = sx;
@@ -31,6 +40,7 @@ class Firework {
         this.speed = 2;
         this.acceleration = 1.05;
         this.brightness = random(50, 70);
+        playSound('launch');
     }
 
     update(index) {
@@ -46,6 +56,7 @@ class Firework {
 
         if (this.distanceTraveled >= this.distanceToTarget) {
             createParticles(this.tx, this.ty);
+            playSound('explode');
             fireworks.splice(index, 1);
         } else {
             this.x += vx;
